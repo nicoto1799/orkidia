@@ -3,11 +3,10 @@
 .AppleDouble
 .LSOverride
 
-# Screenshots
-*.png
-*.jpg
-*.jpeg
+# Screenshots (exclude from root, but allow assets)
 Screenshot*.png
+Screenshot*.jpg
+Screenshot*.jpeg
 
 # Thumbnails
 ._*
