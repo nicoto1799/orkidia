@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Linear Regression for Predicting Yearly Ecommerce Spending</title>
+        <link rel="stylesheet" href="../../assets/css/styles.css">
+        
+        <!-- Google tag (gtag.js) -->
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-Y0J05GYCR5"
+        ></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+
+            gtag("config", "G-Y0J05GYCR5");
+        </script>
+    </head>
+    <body>
+        <header>
+    <nav class="container">
+        <div class="logo">
+            <img src="../../assets/images/orkidia-logo.jpg" alt="Orkidia Logo" class="logo-img">
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+        </ul>
+    </nav>
+</header>
+        
+        <main>
+            
+<article class="blog-post">
+    <header class="blog-post-header">
+        <div class="container">
+            <div class="blog-post-meta">
+                <time datetime="2025-01-20">January 19, 2025</time>
+                
+                    <div class="blog-tags">
+                        
+                            
+                        
+                            
+                                <span class="blog-tag">machine-learning</span>
+                            
+                        
+                            
+                                <span class="blog-tag">python</span>
+                            
+                        
+                            
+                                <span class="blog-tag">data-science</span>
+                            
+                        
+                            
+                                <span class="blog-tag">tutorial</span>
+                            
+                        
+                    </div>
+                
+            </div>
+            <h1 class="blog-post-title">Linear Regression for Predicting Yearly Ecommerce Spending</h1>
+            
+                <p class="blog-post-excerpt">A step-by-step guide to using linear regression for predicting customer spending based on activity data from an ecommerce platform.</p>
+            
+        </div>
+    </header>
+    
+    <div class="blog-post-content">
+        <div class="container">
+            <div class="prose">
+                <p>This tutorial walks you through how to use linear regression to predict customer spending based on activity data from an ecommerce platform. It's written step-by-step to help you learn both the coding and the reasoning behind each action.</p>
+<h2>About the Dataset</h2>
+<p>This dataset contains information about customers who shop for clothing online. The store offers in-person style consultations, and customers often continue their shopping experience digitally—either on a mobile app or through the website.</p>
+<p>The purpose of the dataset is to help the company understand where to focus its user experience efforts: should it invest more in improving the mobile app or the website? The dataset includes various metrics such as average session length, time spent on app vs website, membership duration, and total yearly spending.</p>
+<h2>Sample of the Dataset</h2>
+<p>Below is a preview of the ecommerce dataset. It includes customer contact info (which we later drop), user activity metrics, and their total yearly spending:</p>
+<table>
+<thead>
+<tr>
+<th>Email</th>
+<th>Avg. Session Length</th>
+<th>Time on App</th>
+<th>Time on Website</th>
+<th>Length of Membership</th>
+<th>Yearly Amount Spent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mstephenson@fernandez.com</td>
+<td>34.50</td>
+<td>12.66</td>
+<td>39.58</td>
+<td>4.08</td>
+<td>$587.95</td>
+</tr>
+<tr>
+<td>hduke@hotmail.com</td>
+<td>31.93</td>
+<td>11.11</td>
+<td>37.27</td>
+<td>2.66</td>
+<td>$392.20</td>
+</tr>
+<tr>
+<td>pallen@yahoo.com</td>
+<td>33.00</td>
+<td>11.33</td>
+<td>37.11</td>
+<td>4.10</td>
+<td>$487.55</td>
+</tr>
+<tr>
+<td>riverarebecca@gmail.com</td>
+<td>34.31</td>
+<td>13.72</td>
+<td>36.72</td>
+<td>3.12</td>
+<td>$581.85</td>
+</tr>
+</tbody>
+</table>
+<p>The original dataset is available on <a href="https://www.kaggle.com/datasets/saikiran2001/linear-regression-ecommerce-dataset">Kaggle</a>.</p>
+<h2>1. Load and Clean the Data</h2>
+<p>We begin by loading the dataset and cleaning the column names. Some fields, such as <strong>Address</strong>, contain line breaks and are enclosed in quotation marks, which is important to handle correctly when reading the file.</p>
+<pre><code class="language-python">import pandas as pd
+
+# Load the dataset using the correct file extension and quoting
+df = pd.read_csv('dataset.csv', quotechar='&quot;')
+
+# Replace spaces with underscores for easier access in Python
+df.columns = [col.strip().replace(&quot; &quot;, &quot;_&quot;) for col in df.columns]
+
+# Print all column names to inspect the structure
+print(df.columns)
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code class="language-python">Index(['Email', 'Address', 'Avatar', 'Avg._Session_Length', 'Time_on_App',
+       'Time_on_Website', 'Length_of_Membership', 'Yearly_Amount_Spent'],
+      dtype='object')
+</code></pre>
+<p><strong>Explanation:</strong> We cleaned column names to avoid problems when referencing them in code. Inspecting columns helps understand what features are available for prediction.</p>
+<blockquote>
+<p><strong>Tip:</strong> When reading this <code>.csv</code> file using <code>pandas.read_csv()</code>, make sure to include <code>quotechar='&quot;'</code> to correctly handle the quoted multiline address fields.</p>
+</blockquote>
+<h2>2. Drop Irrelevant Columns</h2>
+<p>Some columns like <code>Email</code>, <code>Address</code>, and <code>Avatar</code> are identifiers or not numeric—so they're not helpful for regression.</p>
+<pre><code class="language-python">df = df.drop(['Email', 'Address', 'Avatar'], axis=1)
+</code></pre>
+<p><strong>Explanation:</strong> Machine learning models work best with numerical data. These removed fields don't influence a person's spending behavior.</p>
+<h2>3. Split the Dataset</h2>
+<p>Next, we separate the data into input features <code>X</code> and the target value <code>y</code> (the thing we want to predict), and split into training and test sets.</p>
+<pre><code class="language-python">from sklearn.model_selection import train_test_split
+
+X = df.drop(['Yearly_Amount_Spent'], axis=1)  # Input features
+y = df['Yearly_Amount_Spent']                 # Target variable
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42)
+</code></pre>
+<p><strong>Explanation:</strong> We use 80% of the data to train the model, and 20% to test how well it works. This prevents overfitting and gives us a realistic assessment of model performance.</p>
+<h2>4. Train the Linear Regression Model</h2>
+<p>Now we create a linear regression model using scikit-learn and train it using our training data.</p>
+<pre><code class="language-python">from sklearn.linear_model import LinearRegression
+
+model = LinearRegression()
+model.fit(X_train, y_train)
+</code></pre>
+<p><strong>Explanation:</strong> The model learns the best-fitting line through the training data to make predictions on new data. Linear regression finds the optimal coefficients for each feature.</p>
+<h2>5. Evaluate the Model</h2>
+<p>We test our model by making predictions and comparing them to actual values using error metrics.</p>
+<pre><code class="language-python">from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
+y_pred = model.predict(X_test)
+
+print(&quot;MAE:&quot;, mean_absolute_error(y_test, y_pred))
+print(&quot;MSE:&quot;, mean_squared_error(y_test, y_pred))
+print(&quot;R² Score:&quot;, r2_score(y_test, y_pred))
+</code></pre>
+<h3>Model Evaluation Results</h3>
+<pre><code class="language-python">MAE: 8.558441885315203
+MSE: 109.86374118393957
+R² Score: 0.9778130629184127
+</code></pre>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>MAE (Mean Absolute Error):</strong> On average, our predictions are off by about $8.56</li>
+<li><strong>MSE (Mean Squared Error):</strong> Squared version of error—penalizes large mistakes more heavily</li>
+<li><strong>R² Score:</strong> Shows that 97.78% of the variation in spending is explained by our model (1.0 would be perfect)</li>
+</ul>
+<h2>6. Visualize the Predictions</h2>
+<p>We use a scatter plot to compare actual values to predictions. A perfect model would show all points on a straight diagonal line.</p>
+<pre><code class="language-python">import matplotlib.pyplot as plt
+
+plt.scatter(y_test, y_pred)
+plt.xlabel(&quot;Actual&quot;)
+plt.ylabel(&quot;Predicted&quot;)
+plt.title(&quot;Actual vs. Predicted Yearly Amount Spent&quot;)
+plt.show()
+</code></pre>
+<p><img src="/assets/images/linearRegresionImg1.jpeg" alt="Scatter plot showing actual vs predicted values"></p>
+<p><strong>Explanation:</strong> This plot helps us visually check the accuracy. The closer the dots are to a 45-degree diagonal line, the better our predictions.</p>
+<h2>Understanding Feature Importance</h2>
+<p>Let's examine which features have the most impact on spending predictions:</p>
+<pre><code class="language-python"># Get feature coefficients
+feature_names = X.columns
+coefficients = model.coef_
+
+# Create a DataFrame for better visualization
+feature_importance = pd.DataFrame({
+    'Feature': feature_names,
+    'Coefficient': coefficients
+}).sort_values('Coefficient', key=abs, ascending=False)
+
+print(feature_importance)
+</code></pre>
+<p>This analysis helps the business understand which metrics most strongly correlate with customer spending, informing strategic decisions about where to focus development efforts.</p>
+<h2>Business Insights</h2>
+<p>Based on our model results:</p>
+<ol>
+<li><strong>High Accuracy</strong>: With an R² score of 0.978, we can confidently use this model for business predictions</li>
+<li><strong>Feature Analysis</strong>: The coefficients reveal which customer behaviors drive higher spending</li>
+<li><strong>Strategic Focus</strong>: Understanding app vs. website engagement helps prioritize development resources</li>
+</ol>
+<h2>Next Steps</h2>
+<p>This foundational example demonstrates key machine learning concepts:</p>
+<ul>
+<li><strong>Data preprocessing</strong> and cleaning</li>
+<li><strong>Feature selection</strong> and engineering</li>
+<li><strong>Model training</strong> and evaluation</li>
+<li><strong>Performance visualization</strong> and interpretation</li>
+</ul>
+<p>You can now explore more advanced techniques:</p>
+<ul>
+<li><strong>Polynomial regression</strong> for non-linear relationships</li>
+<li><strong>Feature engineering</strong> to create new predictive variables</li>
+<li><strong>Cross-validation</strong> for more robust model evaluation</li>
+<li><strong>Regularization techniques</strong> (Ridge, Lasso) to prevent overfitting</li>
+</ul>
+<h2>Conclusion</h2>
+<p>Linear regression provides an excellent starting point for predictive modeling in ecommerce. The high accuracy achieved (97.78% R² score) demonstrates that customer engagement metrics are strong predictors of spending behavior.</p>
+<p>This approach enables data-driven decision making, helping businesses optimize their digital experiences based on quantifiable customer behavior patterns.</p>
+<hr>
+<p><em>Want to dive deeper into machine learning for business applications? The complete code for this tutorial is available on our <a href="https://gitlab.com/orkidia-nico/linear-regression-ecommerce-orkidia">GitLab repository</a>. For custom ML solutions for your business, <a href="mailto:contact@orkidia.io">contact our team</a>.</em></p>
+
+            </div>
+        </div>
+    </div>
+    
+    <footer class="blog-post-footer">
+        <div class="container">
+            <div class="blog-navigation">
+                <a href="/blog/" class="back-to-blog">← Back to Blog</a>
+                <div class="blog-share">
+                    <span>Share this article:</span>
+                    <a href="https://twitter.com/intent/tweet?text=Linear Regression for Predicting Yearly Ecommerce Spending" target="_blank" rel="noopener">Twitter</a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/" target="_blank" rel="noopener">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</article>
+        </main>
+        
+        <footer id="contact">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Orkidia</h3>
+                <p>
+                    Expert software solutions for modern businesses. We
+                    transform ideas into scalable, efficient, and
+                    innovative technology solutions.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <p>
+                    Code Refactoring<br />
+                    Legacy Migration<br />
+                    Microservices Architecture<br />
+                    AI Model Deployment<br />
+                    Custom Development
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>
+                    Ready to transform your software?<br />
+                    <a href="mailto:contact@orkidia.io"
+                        >contact@orkidia.io</a
+                    ><br />
+                    <!-- <a href="tel:+1234567890">+1 (234) 567-890</a> -->
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Orkidia. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+        <script>
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    document
+                        .querySelector(this.getAttribute("href"))
+                        .scrollIntoView({
+                            behavior: "smooth",
+                        });
+                });
+            });
+
+            // Scroll reveal animation
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px",
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("revealed");
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll(".scroll-reveal").forEach((el) => {
+                observer.observe(el);
+            });
+
+            // Header background on scroll
+            window.addEventListener("scroll", () => {
+                const header = document.querySelector("header");
+                if (window.scrollY > 100) {
+                    header.style.background = "rgba(10, 10, 10, 0.98)";
+                } else {
+                    header.style.background = "rgba(10, 10, 10, 0.95)";
+                }
+            });
+        </script>
+    </body>
+</html>
