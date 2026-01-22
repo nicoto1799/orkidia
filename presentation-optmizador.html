@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="POL_OPTIMIZATOR - Advanced Statistical Optimization Platform for data scientists and analysts">
+    <meta name="keywords" content="optimization, statistical analysis, risk modeling, scorecard, data science">
+    <title>POL_OPTIMIZATOR - Advanced Statistical Optimization Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --light-bg: #ecf0f1;
+            --white: #ffffff;
+            --text-color: #2c3e50;
+            --border-color: #bdc3c7;
+            --code-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .navbar nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .navbar nav a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+        }
+
+        .hero .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .hero .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 4rem 2rem;
+        }
+
+        section:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin: 2rem 0 1rem;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            margin: 1.5rem 0 1rem;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .feature-card h3 {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .process-flow {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .step {
+            background: linear-gradient(135deg, var(--light-bg) 0%, var(--white) 100%);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+
+        .step:hover {
+            transform: translateX(10px);
+        }
+
+        .step h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .metric-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        .metric-card h4 {
+            margin-top: 0;
+        }
+
+        .metric-formula {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            margin: 1rem 0;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .benefit-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .benefit-list li {
+            padding: 0.8rem 0 0.8rem 3rem;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .benefit-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+            justify-content: center;
+        }
+
+        .tech-badge {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid var(--warning-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 5px;
+        }
+
+        .info-box {
+            background: #d1ecf1;
+            border-left: 4px solid #0c5460;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 5px;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid var(--success-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 5px;
+        }
+
+        .faq-item {
+            background: var(--white);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--white);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: var(--light-bg);
+        }
+
+        .roadmap {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .roadmap-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .roadmap-card h4 {
+            margin-top: 0;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light-bg);
+        }
+
+        .roadmap-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .roadmap-card li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .roadmap-card li::before {
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .roadmap-card.current li::before {
+            content: "✅";
+            color: var(--success-color);
+        }
+
+        .roadmap-card.soon li::before {
+            content: "🔄";
+        }
+
+        .roadmap-card.future li::before {
+            content: "📅";
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .contact-section h2 {
+            color: var(--white);
+        }
+
+        .contact-button {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--primary-color);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1rem 0.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .contact-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        code {
+            background: var(--code-bg);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+        }
+
+        pre {
+            background: var(--code-bg);
+            padding: 1.5rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: var(--text-color);
+        }
+
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .navbar nav a {
+                margin-left: 1rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+            }
+
+            .feature-grid,
+            .metrics-grid,
+            .roadmap {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--secondary-color);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <h1>POL_OPTIMIZATOR</h1>
+            <nav>
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#metrics">Metrics</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Advanced Statistical Optimization Platform</h2>
+            <p>Transform large datasets into optimized filtering strategies for risk analysis and scorecard modeling with intelligent automation and scalable processing.</p>
+            <a href="#contact" class="cta-button">Request a Demo</a>
+        </div>
+    </section>
+
+    <!-- What is POL_OPTIMIZATOR -->
+    <section id="about">
+        <div class="container">
+            <h2>What is POL_OPTIMIZATOR?</h2>
+            <p>POL_OPTIMIZATOR is a <strong>cloud-based statistical optimization platform</strong> designed for data scientists and analysts who need to process large datasets and generate optimized filtering strategies for risk analysis and scorecard modeling.</p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <span class="icon">🚀</span>
+                    <h3>Automated Processing</h3>
+                    <p>Upload datasets and let the system handle validation, cleaning, and preprocessing automatically.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">🎯</span>
+                    <h3>Intelligent Generation</h3>
+                    <p>Automatically generates thousands of optimization scenarios based on your configuration.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">📊</span>
+                    <h3>Multi-Objective Optimization</h3>
+                    <p>Finds optimal balance between risk, approval rates, and control simultaneously.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">⚡</span>
+                    <h3>Scalable Processing</h3>
+                    <p>Handles datasets from thousands to millions of records with intelligent resource allocation.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">📈</span>
+                    <h3>Real-time Monitoring</h3>
+                    <p>Track optimization progress with live status updates and progress indicators.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">📧</span>
+                    <h3>Email Notifications</h3>
+                    <p>Receive completion alerts when jobs finish with detailed execution summaries.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section id="use-cases">
+        <div class="container">
+            <h2>Use Cases</h2>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>💳 Credit Risk Modeling</h3>
+                    <p>Optimize credit approval strategies by finding the best balance between:</p>
+                    <ul class="benefit-list">
+                        <li>Minimize default rates</li>
+                        <li>Maximize approval rates</li>
+                        <li>Control exposure to high-risk segments</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>📋 Scorecard Development</h3>
+                    <p>Build statistical scorecards with:</p>
+                    <ul class="benefit-list">
+                        <li>Identify most important predictive variables</li>
+                        <li>Find best customer segments</li>
+                        <li>Calculate key performance indicators</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🎲 Data-Driven Decision Making</h3>
+                    <p>Transform large datasets into actionable insights:</p>
+                    <ul class="benefit-list">
+                        <li>Identify hidden patterns in your data</li>
+                        <li>Evaluate multiple business scenarios</li>
+                        <li>Find trade-offs between objectives</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <h3 style="text-align: center; color: var(--secondary-color); margin-bottom: 3rem;">Simple 4-Step Process</h3>
+
+            <div class="process-flow">
+                <div class="step">
+                    <h4>STEP 1: UPLOAD YOUR DATA</h4>
+                    <ul>
+                        <li>Upload main dataset (CSV format)</li>
+                        <li>Upload variable configuration file</li>
+                        <li>Automatic chunked upload for large files</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <h4>STEP 2: DATA ANALYSIS</h4>
+                    <ul>
+                        <li>Automatic data cleaning and validation</li>
+                        <li>Variable importance calculation (IV - Information Value)</li>
+                        <li>Statistical summary and quality metrics</li>
+                        <li>Visual importance table</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <h4>STEP 3: CONFIGURE OPTIMIZATION</h4>
+                    <ul>
+                        <li>Set number of variables to combine (2-4)</li>
+                        <li>Define maximum categories for categorical variables</li>
+                        <li>Configure decision tree depth</li>
+                        <li>Set minimum thresholds</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <h4>STEP 4: RUN OPTIMIZATION</h4>
+                    <ul>
+                        <li>Automatic execution with progress tracking</li>
+                        <li>Real-time status updates</li>
+                        <li>Email notification on completion</li>
+                        <li>Interactive results visualization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section id="features">
+        <div class="container">
+            <h2>Key Features</h2>
+
+            <h3>🚀 Intelligent Data Processing</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Automatic Data Cleaning</h4>
+                    <ul>
+                        <li>Remove null values and invalid records</li>
+                        <li>Detect and eliminate constant variables</li>
+                        <li>Type conversion and validation</li>
+                        <li>Quality metrics and warnings</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h4>Variable Importance Analysis</h4>
+                    <ul>
+                        <li>Calculate Information Value (IV)</li>
+                        <li>Rank variables by predictive power</li>
+                        <li>Automatic categorization</li>
+                        <li>Interactive importance table</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 3rem;">🎯 Advanced Optimization</h3>
+            <div class="success-box">
+                <h4>Multi-Objective Optimization</h4>
+                <p>Simultaneously optimize three key metrics:</p>
+                <ul>
+                    <li><strong>Risk %</strong>: Percentage of risky records in approved population</li>
+                    <li><strong>Approval %</strong>: Percentage of total records approved</li>
+                    <li><strong>Controlled %</strong>: Percentage of risky records filtered out</li>
+                </ul>
+            </div>
+
+            <h3 style="margin-top: 3rem;">📊 Data Transparency</h3>
+            <div class="info-box">
+                <h4>Before & After Metrics</h4>
+                <ul>
+                    <li><strong>Raw Data</strong>: Original file statistics</li>
+                    <li><strong>Clean Data</strong>: Processed data metrics</li>
+                    <li><strong>Cleaning Impact</strong>: Detailed cleaning report with records removed, variables eliminated, and warning alerts</li>
+                </ul>
+            </div>
+
+            <h3 style="margin-top: 3rem;">⚡ Performance & Scalability</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Intelligent Scaling</h4>
+                    <p>Machine learning-based workload prediction automatically allocates optimal resources based on job size.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>Chunked Processing</h4>
+                    <p>Handle files of any size with efficient memory management and resume capability.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>Asynchronous Execution</h4>
+                    <p>Non-blocking optimization jobs with real-time progress tracking and parallel processing support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Optimization Metrics -->
+    <section id="metrics">
+        <div class="container">
+            <h2>Optimization Metrics Explained</h2>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h4>1. Risk % (Risk Rate)</h4>
+                    <p><strong>What it measures:</strong> Of the records that pass the filter, what percentage are risky?</p>
+                    <div class="metric-formula">
+                        Formula: (Risky records in filtered data) / (Total filtered records)
+                    </div>
+                    <p><strong>Example:</strong> If 100 customers pass your filter and 15 default → Risk % = 15%</p>
+                    <p><strong>Business Goal:</strong> <span style="color: var(--success-color); font-weight: bold;">Minimize</span> (lower is better)</p>
+                </div>
+
+                <div class="metric-card">
+                    <h4>2. Approval % (Survival Rate)</h4>
+                    <p><strong>What it measures:</strong> What percentage of total records pass the filter?</p>
+                    <div class="metric-formula">
+                        Formula: (Records that pass filter) / (Total records)
+                    </div>
+                    <p><strong>Example:</strong> If you have 1000 customers and 600 pass the filter → Approval % = 60%</p>
+                    <p><strong>Business Goal:</strong> <span style="color: var(--success-color); font-weight: bold;">Maximize</span> (higher is better for growth)</p>
+                </div>
+
+                <div class="metric-card">
+                    <h4>3. Controlled % (Risk Eliminated)</h4>
+                    <p><strong>What it measures:</strong> What percentage of risky records are filtered out?</p>
+                    <div class="metric-formula">
+                        Formula: 1 - (Risky records in filtered data) / (Total risky records)
+                    </div>
+                    <p><strong>Example:</strong> If there are 200 risky customers and you filter out 150 → Controlled % = 75%</p>
+                    <p><strong>Business Goal:</strong> <span style="color: var(--success-color); font-weight: bold;">Maximize</span> (higher is better for risk control)</p>
+                </div>
+            </div>
+
+            <div class="warning-box" style="margin-top: 3rem;">
+                <h4>The Optimization Challenge</h4>
+                <p>These three metrics are <strong>conflicting objectives</strong>:</p>
+                <ul>
+                    <li>Reduce risk → Fewer approvals (lower growth)</li>
+                    <li>Increase approvals → Higher risk</li>
+                    <li>Control more risk → Fewer approvals</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>POL_OPTIMIZATOR</strong> finds the <strong>Pareto-optimal solutions</strong> where you can't improve one metric without worsening another, giving you the best possible trade-offs to choose from.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section id="technology">
+        <div class="container">
+            <h2>Technology Stack</h2>
+
+            <h3>Frontend</h3>
+            <div class="tech-stack">
+                <span class="tech-badge">Vue 3</span>
+                <span class="tech-badge">Vuetify 3</span>
+                <span class="tech-badge">Pinia</span>
+                <span class="tech-badge">Chart.js</span>
+            </div>
+
+            <h3>Backend</h3>
+            <div class="tech-stack">
+                <span class="tech-badge">FastAPI</span>
+                <span class="tech-badge">Python 3.8+</span>
+                <span class="tech-badge">pandas</span>
+                <span class="tech-badge">DuckDB</span>
+                <span class="tech-badge">XGBoost</span>
+                <span class="tech-badge">pymoo</span>
+            </div>
+
+            <h3>Infrastructure</h3>
+            <div class="tech-stack">
+                <span class="tech-badge">Cloud-Native</span>
+                <span class="tech-badge">Scalable Compute</span>
+                <span class="tech-badge">Distributed Storage</span>
+                <span class="tech-badge">NoSQL Database</span>
+                <span class="tech-badge">Serverless Functions</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section id="benefits">
+        <div class="container">
+            <h2>Benefits</h2>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>For Data Scientists</h3>
+                    <ul class="benefit-list">
+                        <li>Save time with automated preprocessing</li>
+                        <li>Focus on analysis, not infrastructure</li>
+                        <li>Explore thousands of scenarios automatically</li>
+                        <li>Find non-obvious solutions</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>For Business Analysts</h3>
+                    <ul class="benefit-list">
+                        <li>No coding required</li>
+                        <li>Fast results (minutes vs hours/days)</li>
+                        <li>Clear, understandable metrics</li>
+                        <li>Automatic data quality reports</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>For Organizations</h3>
+                    <ul class="benefit-list">
+                        <li>Scalable without infrastructure changes</li>
+                        <li>Cost-efficient pay-as-you-use model</li>
+                        <li>Reproducible analyses</li>
+                        <li>Enterprise-grade security</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Benchmarks -->
+    <section id="performance">
+        <div class="container">
+            <h2>Performance Benchmarks</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Job Size</th>
+                        <th>Records / Cases</th>
+                        <th>Processing Time</th>
+                        <th>Resource Level</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Small</strong></td>
+                        <td>&lt; 100K records, &lt; 1K cases</td>
+                        <td>2-5 minutes</td>
+                        <td>Base instance</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Medium</strong></td>
+                        <td>100K - 1M records, 1K - 10K cases</td>
+                        <td>5-30 minutes</td>
+                        <td>Base or scaled</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Large</strong></td>
+                        <td>&gt; 1M records, &gt; 10K cases</td>
+                        <td>30 min - 2 hours</td>
+                        <td>Auto-scaled</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="text-align: center; font-style: italic; color: #666;">*Times are estimates and vary based on data complexity and configuration</p>
+        </div>
+    </section>
+
+    <!-- Getting Started -->
+    <section id="getting-started">
+        <div class="container">
+            <h2>Getting Started</h2>
+
+            <h3>Prerequisites</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Data Requirements</h4>
+                    <ul>
+                        <li>Main dataset in CSV format</li>
+                        <li>Variable configuration file (CSV)</li>
+                        <li>Target variable (binary: 0/1)</li>
+                        <li>Minimum 1,000 records recommended</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h4>Variable Configuration Format</h4>
+                    <pre><code>variable,type,use
+age,num,yes
+income,num,yes
+city,cat,yes
+education,cat,no
+target,target,yes</code></pre>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 3rem;">Typical Workflow</h3>
+            <ol style="font-size: 1.1rem; line-height: 2; max-width: 800px; margin: 0 auto;">
+                <li><strong>Prepare Your Data</strong> - Export data to CSV, create variable configuration, review data quality</li>
+                <li><strong>Upload & Analyze</strong> - Upload both files, review importance table, check cleaning metrics</li>
+                <li><strong>Configure Optimization</strong> - Select variables to analyze, set optimization parameters, review estimated cases</li>
+                <li><strong>Run & Monitor</strong> - Start optimization, monitor progress, wait for email notification</li>
+                <li><strong>Analyze Results</strong> - Explore Pareto frontier, compare scenarios, export selected solutions</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section id="roadmap">
+        <div class="container">
+            <h2>Roadmap</h2>
+
+            <div class="roadmap">
+                <div class="roadmap-card current">
+                    <h4>Current Features (v2.0)</h4>
+                    <ul>
+                        <li>Automatic data cleaning</li>
+                        <li>Variable importance analysis</li>
+                        <li>Multi-objective optimization</li>
+                        <li>Real-time progress tracking</li>
+                        <li>Email notifications</li>
+                        <li>Session recovery</li>
+                        <li>Intelligent scaling</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-card soon">
+                    <h4>Coming Soon (v2.1)</h4>
+                    <ul>
+                        <li>Advanced filtering backends</li>
+                        <li>Custom optimization objectives</li>
+                        <li>Batch processing API</li>
+                        <li>Enhanced visualization options</li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-card future">
+                    <h4>Future Enhancements (v3.0)</h4>
+                    <ul>
+                        <li>Real-time collaboration</li>
+                        <li>Model deployment tools</li>
+                        <li>A/B testing framework</li>
+                        <li>Advanced reporting templates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: What file formats are supported?</div>
+                <div class="faq-answer">A: Currently, CSV files are supported. Excel support is planned for future releases.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: What's the maximum file size?</div>
+                <div class="faq-answer">A: There's no hard limit. The chunked upload system handles files of any size.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: How long are results stored?</div>
+                <div class="faq-answer">A: Results are stored indefinitely and can be recovered using your session ID.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: How many cases will be generated?</div>
+                <div class="faq-answer">A: It depends on your configuration. Typically ranges from hundreds to hundreds of thousands. The system shows an estimate before you start.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: Can I customize the optimization objectives?</div>
+                <div class="faq-answer">A: Currently, the system optimizes Risk %, Approval %, and Controlled %. Custom objectives are planned for v2.1.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: Is my data secure?</div>
+                <div class="faq-answer">A: Yes. All data is encrypted in transit and at rest. Sessions are isolated, and you control data retention.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: Can I integrate this with my existing systems?</div>
+                <div class="faq-answer">A: Yes, an API is available for programmatic access. Contact us for API documentation.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Demo -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Request a Demo</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Interested in seeing POL_OPTIMIZATOR in action?</p>
+
+            <div style="margin: 2rem 0;">
+                <p><strong>Contact us for:</strong></p>
+                <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                    <li>✓ Personalized demo</li>
+                    <li>✓ Proof of concept with your data</li>
+                    <li>✓ Pricing information</li>
+                    <li>✓ Enterprise licensing</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <a href="mailto:contact@alfaestadistica.com" class="contact-button">Contact Sales</a>
+                <a href="mailto:support@alfaestadistica.com" class="contact-button">Request Demo</a>
+            </div>
+
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.3);">
+                <h3 style="color: white; margin-bottom: 1rem;">Start Your Free Trial</h3>
+                <p>No credit card required • Full feature access • Sample datasets included • Expert onboarding support</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h3 style="color: white;">About POL_OPTIMIZATOR</h3>
+            <p style="max-width: 800px; margin: 1rem auto;">
+                POL_OPTIMIZATOR is developed by <strong>Alfa Estadística</strong>, a team dedicated to making advanced statistical optimization accessible and practical for data-driven organizations.
+            </p>
+
+            <div style="margin: 2rem 0; padding: 2rem 0; border-top: 1px solid rgba(255,255,255,0.2); border-bottom: 1px solid rgba(255,255,255,0.2);">
+                <h4 style="color: white;">Our Mission</h4>
+                <p>Empower data scientists and analysts with powerful, scalable optimization tools that transform complex data into actionable business insights.</p>
+            </div>
+
+            <div style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
+                <p>© 2025 Alfa Estadística. All rights reserved.</p>
+                <p>Version 2.0 | Last Updated: January 2025</p>
+                <p style="margin-top: 1rem;">
+                    <a href="#" style="margin: 0 1rem;">Terms of Service</a> |
+                    <a href="#" style="margin: 0 1rem;">Privacy Policy</a> |
+                    <a href="#" style="margin: 0 1rem;">Contact</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-to-top" id="scrollToTop">
+        ↑
+    </div>
+
+    <script>
+        // Scroll to top functionality
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
