@@ -1,0 +1,1414 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orkidia - Expert Software Solutions</title>
+
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y0J05GYCR5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag("js", new Date());
+        gtag("config", "G-Y0J05GYCR5");
+    </script>
+
+    <style>
+        /* ========================================
+           ORKIDIA - Human + Machine Aesthetic
+           ======================================== */
+
+        :root {
+            --black: #000000;
+            --black-soft: #0a0a0a;
+            --black-card: #111111;
+            --white: #ffffff;
+            --white-muted: rgba(255, 255, 255, 0.7);
+            --white-dim: rgba(255, 255, 255, 0.4);
+            --white-subtle: rgba(255, 255, 255, 0.15);
+
+            --accent-iris: #7B68EE;
+            --accent-gold: #DAA520;
+            --accent-emerald: #50C878;
+
+            --glow-iris: 0 0 30px rgba(123, 104, 238, 0.4);
+            --glow-gold: 0 0 30px rgba(218, 165, 32, 0.4);
+
+            --font-display: 'Syne', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-mono);
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ========================================
+           HERO SECTION
+           ======================================== */
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Face Image - Central Focus */
+        .hero-face {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        .hero-face img {
+            max-height: 85vh;
+            width: auto;
+            animation: breathe 8s ease-in-out infinite;
+        }
+
+        /* Radial Glow Behind Face */
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(
+                circle,
+                rgba(123, 104, 238, 0.15) 0%,
+                rgba(218, 165, 32, 0.08) 30%,
+                transparent 70%
+            );
+            filter: blur(60px);
+            z-index: 0;
+            animation: pulseGlow 6s ease-in-out infinite;
+        }
+
+        /* Text Overlay - Left */
+        .hero-text-left {
+            position: absolute;
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            max-width: 320px;
+        }
+
+        .brand-tag {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent-iris);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .brand-tag::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--accent-iris);
+        }
+
+        .hero-headline {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.0;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-headline .line {
+            display: block;
+            overflow: hidden;
+        }
+
+        .hero-headline .line span {
+            display: block;
+            animation: slideUp 1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+            opacity: 0;
+            transform: translateY(100%);
+        }
+
+        .hero-headline .line:nth-child(1) span { animation-delay: 0.3s; }
+        .hero-headline .line:nth-child(2) span { animation-delay: 0.45s; }
+        .hero-headline .line:nth-child(3) span { animation-delay: 0.6s; }
+
+        .hero-headline em {
+            font-style: normal;
+            background: linear-gradient(90deg, var(--accent-iris), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 13px;
+            color: var(--white-muted);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease-out 0.8s both;
+        }
+
+        .hero-cta {
+            animation: fadeIn 1s ease-out 1s both;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: var(--white);
+            color: var(--black);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-iris);
+            color: var(--white);
+            box-shadow: var(--glow-iris);
+        }
+
+        .btn-primary .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        /* Text Overlay - Right */
+        .hero-text-right {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            text-align: right;
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            animation: fadeIn 1s ease-out 1.2s both;
+        }
+
+        .stat {
+            text-align: right;
+        }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(180deg, var(--white) 0%, var(--white-dim) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--white-dim);
+            margin-top: 0.5rem;
+        }
+
+        /* Bottom Bar */
+        .hero-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--white-subtle);
+            z-index: 10;
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .hero-nav a {
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--white-dim);
+            transition: color 0.3s ease;
+        }
+
+        .hero-nav a:hover {
+            color: var(--white);
+        }
+
+        .hero-scroll {
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--white-dim);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .scroll-line {
+            width: 40px;
+            height: 1px;
+            background: var(--white-dim);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        /* ========================================
+           SECTIONS
+           ======================================== */
+
+        .section {
+            padding: 8rem 5%;
+            position: relative;
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--white-subtle);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title em {
+            font-style: normal;
+            color: var(--accent-iris);
+        }
+
+        .section-count {
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            color: var(--white-dim);
+        }
+
+        /* ========================================
+           TOOLS SECTION
+           ======================================== */
+
+        .tools-section {
+            background: var(--black-soft);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .tool-card {
+            background: var(--black-card);
+            border: 1px solid var(--white-subtle);
+            padding: 3rem;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-iris), var(--accent-gold));
+            transition: width 0.5s ease;
+        }
+
+        .tool-card:hover {
+            border-color: var(--white-dim);
+            transform: translateY(-4px);
+        }
+
+        .tool-card:hover::before {
+            width: 100%;
+        }
+
+        .tool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-header h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .tool-badge {
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            padding: 0.4rem 0.8rem;
+            border: 1px solid var(--accent-gold);
+        }
+
+        .tool-description {
+            color: var(--white-muted);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .tool-features {
+            margin-bottom: 2rem;
+        }
+
+        .tool-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.6rem 0;
+            color: var(--white-muted);
+            font-size: 13px;
+        }
+
+        .tool-feature::before {
+            content: '>';
+            color: var(--accent-iris);
+        }
+
+        .tool-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--white-subtle);
+        }
+
+        .tech-tag {
+            font-size: 10px;
+            letter-spacing: 0.05em;
+            color: var(--white-dim);
+            padding: 0.4rem 0.75rem;
+            border: 1px solid var(--white-subtle);
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            border-color: var(--accent-iris);
+            color: var(--accent-iris);
+        }
+
+        .tool-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--white-subtle);
+            margin-bottom: 2rem;
+        }
+
+        .tool-stat {
+            text-align: center;
+        }
+
+        .tool-stat-value {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-iris);
+        }
+
+        .tool-stat-label {
+            font-size: 10px;
+            color: var(--white-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+        }
+
+        .tool-cta {
+            text-align: center;
+        }
+
+        .tool-btn {
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.875rem 2rem;
+            background: transparent;
+            border: 1px solid var(--white);
+            color: var(--white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tool-btn:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* ========================================
+           SERVICES SECTION
+           ======================================== */
+
+        .services-section {
+            background: var(--black);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .service-item {
+            padding: 2.5rem;
+            border: 1px solid var(--white-subtle);
+            margin: -1px 0 0 -1px;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .service-item:hover {
+            background: var(--black-card);
+            z-index: 1;
+        }
+
+        .service-number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(180deg, var(--white-subtle) 0%, transparent 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .service-item h4 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            transition: color 0.3s ease;
+        }
+
+        .service-item:hover h4 {
+            color: var(--accent-iris);
+        }
+
+        .service-item p {
+            font-size: 13px;
+            color: var(--white-muted);
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           APPROACH SECTION
+           ======================================== */
+
+        .approach-section {
+            background: var(--black-soft);
+        }
+
+        .approach-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .approach-visual {
+            display: flex;
+            align-items: center;
+        }
+
+        .approach-quote {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 1.4;
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px solid var(--accent-iris);
+        }
+
+        .approach-quote em {
+            font-style: normal;
+            color: var(--accent-gold);
+        }
+
+        .approach-list {
+            list-style: none;
+        }
+
+        .approach-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--white-subtle);
+        }
+
+        .approach-item:last-child {
+            border-bottom: none;
+        }
+
+        .approach-number {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-iris);
+            min-width: 2rem;
+        }
+
+        .approach-content h5 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .approach-content p {
+            font-size: 13px;
+            color: var(--white-muted);
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+
+        .footer {
+            background: var(--black);
+            border-top: 1px solid var(--white-subtle);
+            padding: 6rem 5% 3rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto 4rem;
+        }
+
+        .footer-brand img {
+            height: 50px;
+            width: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand p {
+            font-size: 13px;
+            color: var(--white-muted);
+            max-width: 280px;
+        }
+
+        .footer-column h5 {
+            font-family: var(--font-display);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column a {
+            font-size: 13px;
+            color: var(--white-muted);
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--white-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            font-size: 11px;
+            color: var(--white-dim);
+        }
+
+        /* ========================================
+           WHATSAPP
+           ======================================== */
+
+        .whatsapp-float {
+            position: fixed;
+            width: 56px;
+            height: 56px;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--white);
+            color: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: var(--accent-iris);
+            color: var(--white);
+            box-shadow: var(--glow-iris);
+        }
+
+        .whatsapp-float svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        /* ========================================
+           MODAL
+           ======================================== */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: var(--black-card);
+            margin: 5% auto;
+            border: 1px solid var(--white-subtle);
+            width: 90%;
+            max-width: 500px;
+            animation: modalFade 0.3s ease-out;
+        }
+
+        .modal-header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--white-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .close-modal {
+            color: var(--white-dim);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--white);
+        }
+
+        #demoForm {
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--white-muted);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: var(--black);
+            border: 1px solid var(--white-subtle);
+            color: var(--white);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-iris);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--white-dim);
+        }
+
+        .form-group input[readonly] {
+            background: var(--black-soft);
+            color: var(--accent-gold);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--white);
+            border: none;
+            color: var(--black);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-iris);
+            color: var(--white);
+        }
+
+        /* ========================================
+           ANIMATIONS
+           ======================================== */
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.02); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        @keyframes scrollPulse {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes modalFade {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+
+        @media (max-width: 1200px) {
+            .hero-text-left,
+            .hero-text-right {
+                position: relative;
+                left: auto;
+                right: auto;
+                top: auto;
+                transform: none;
+                text-align: center;
+            }
+
+            .hero {
+                flex-direction: column;
+                padding: 6rem 2rem;
+                gap: 3rem;
+            }
+
+            .hero-face {
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+            }
+
+            .hero-face img {
+                max-height: 50vh;
+            }
+
+            .hero-stats {
+                flex-direction: row;
+                gap: 3rem;
+            }
+
+            .stat {
+                text-align: center;
+            }
+
+            .hero-bottom {
+                position: relative;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .brand-tag {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .approach-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 5rem 5%;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .hero-headline {
+                font-size: 2rem;
+            }
+
+            .approach-quote {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="home">
+        <div class="hero-glow"></div>
+
+        <div class="hero-face">
+            <img src="./assets/images/hero-face.png" alt="Human + Machine">
+        </div>
+
+        <div class="hero-text-left">
+            <div class="brand-tag">Orkidia</div>
+
+            <h1 class="hero-headline">
+                <div class="line"><span>Where</span></div>
+                <div class="line"><span><em>Human</em></span></div>
+                <div class="line"><span>Meets Machine</span></div>
+            </h1>
+
+            <p class="hero-description">
+                We transform legacy systems into intelligent, modern architectures.
+                Precision engineering with a human touch.
+            </p>
+
+            <div class="hero-cta">
+                <a href="#contact" class="btn-primary">
+                    <span>Start Project</span>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-text-right">
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-value">03</div>
+                    <div class="stat-label">Expert Partners</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">09</div>
+                    <div class="stat-label">Core Services</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">15+</div>
+                    <div class="stat-label">Technologies</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-bottom">
+            <nav class="hero-nav">
+                <a href="#tools">Tools</a>
+                <a href="#services">Services</a>
+                <a href="/blog/">Blog</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="hero-scroll">
+                <span class="scroll-line"></span>
+                Scroll to explore
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TOOLS ==================== -->
+    <section class="section tools-section" id="tools">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Tools & <em>Innovations</em></h2>
+                <span class="section-count">02 Products</span>
+            </div>
+
+            <div class="tools-grid">
+                <div class="tool-card reveal">
+                    <div class="tool-header">
+                        <h3>VintageBanking</h3>
+                        <span class="tool-badge">Credit Risk</span>
+                    </div>
+                    <p class="tool-description">
+                        Comprehensive credit risk management suite for financial institutions.
+                        Advanced vintage analysis, risk indicators, and predictive modeling.
+                    </p>
+                    <div class="tool-features">
+                        <div class="tool-feature">Vintage Analysis (Cohorts)</div>
+                        <div class="tool-feature">6 Risk Indicators (ICC, ICV, Provisions)</div>
+                        <div class="tool-feature">Markov Chain Projections</div>
+                        <div class="tool-feature">DuckDB-Powered Analytics</div>
+                    </div>
+                    <div class="tool-tech">
+                        <span class="tech-tag">React 19</span>
+                        <span class="tech-tag">Python 3.11</span>
+                        <span class="tech-tag">DuckDB</span>
+                        <span class="tech-tag">AWS Lambda</span>
+                        <span class="tech-tag">TypeScript</span>
+                    </div>
+                    <div class="tool-stats">
+                        <div class="tool-stat">
+                            <div class="tool-stat-value">65%</div>
+                            <div class="tool-stat-label">Faster</div>
+                        </div>
+                        <div class="tool-stat">
+                            <div class="tool-stat-value">06</div>
+                            <div class="tool-stat-label">Indicators</div>
+                        </div>
+                        <div class="tool-stat">
+                            <div class="tool-stat-value">100%</div>
+                            <div class="tool-stat-label">Cloud</div>
+                        </div>
+                    </div>
+                    <div class="tool-cta">
+                        <button class="tool-btn">Request Demo</button>
+                    </div>
+                </div>
+
+                <div class="tool-card reveal">
+                    <div class="tool-header">
+                        <h3>POL_OPTIMIZATOR</h3>
+                        <span class="tool-badge">Statistical Opt</span>
+                    </div>
+                    <p class="tool-description">
+                        Advanced statistical optimization platform for data scientists.
+                        Transform large datasets into optimized filtering strategies.
+                    </p>
+                    <div class="tool-features">
+                        <div class="tool-feature">Automated Data Processing</div>
+                        <div class="tool-feature">Multi-Objective Optimization</div>
+                        <div class="tool-feature">Variable Importance Analysis (IV)</div>
+                        <div class="tool-feature">Scalable Cloud Processing</div>
+                    </div>
+                    <div class="tool-tech">
+                        <span class="tech-tag">Vue 3</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">pandas</span>
+                        <span class="tech-tag">XGBoost</span>
+                        <span class="tech-tag">pymoo</span>
+                    </div>
+                    <div class="tool-stats">
+                        <div class="tool-stat">
+                            <div class="tool-stat-value">1M+</div>
+                            <div class="tool-stat-label">Records</div>
+                        </div>
+                        <div class="tool-stat">
+                            <div class="tool-stat-value">03</div>
+                            <div class="tool-stat-label">Metrics</div>
+                        </div>
+                        <div class="tool-stat">
+                            <div class="tool-stat-value">Auto</div>
+                            <div class="tool-stat-label">Scaling</div>
+                        </div>
+                    </div>
+                    <div class="tool-cta">
+                        <button class="tool-btn">Request Demo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SERVICES ==================== -->
+    <section class="section services-section" id="services">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Core <em>Services</em></h2>
+                <span class="section-count">09 Modules</span>
+            </div>
+
+            <div class="services-grid reveal">
+                <div class="service-item">
+                    <span class="service-number">01</span>
+                    <h4>Code Refactoring & Optimization</h4>
+                    <p>Transform codebases with improved performance and scalability.</p>
+                </div>
+                <div class="service-item">
+                    <span class="service-number">02</span>
+                    <h4>Legacy System Migration</h4>
+                    <p>Seamlessly migrate to modern platforms with minimal downtime.</p>
+                </div>
+                <div class="service-item">
+                    <span class="service-number">03</span>
+                    <h4>Monolith to Microservices</h4>
+                    <p>Transform monolithic architecture into scalable microservices.</p>
+                </div>
+                <div class="service-item">
+                    <span class="service-number">04</span>
+                    <h4>AWS Cost Analysis</h4>
+                    <p>Optimize cloud infrastructure costs with detailed analysis.</p>
+                </div>
+                <div class="service-item">
+                    <span class="service-number">05</span>
+                    <h4>Large Data Processing</h4>
+                    <p>Handle massive datasets with high-performance solutions.</p>
+                </div>
+                <div class="service-item">
+                    <span class="service-number">06</span>
+                    <h4>AI Model Deployment</h4>
+                    <p>Deploy and scale AI models in production environments.</p>
+                </div>
+                <div class="service-item">
+                    <span class="service-number">07</span>
+                    <h4>Custom Software Development</h4>
+                    <p>Bespoke solutions with solid architectural design.</p>
+                </div>
+                <div class="service-item">
+                    <span class="service-number">08</span>
+                    <h4>LLM Business Integration</h4>
+                    <p>Enhance workflows with Large Language Models.</p>
+                </div>
+                <div class="service-item">
+                    <span class="service-number">09</span>
+                    <h4>Rapid Prototyping</h4>
+                    <p>Prototypes with solid foundations for production.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== APPROACH ==================== -->
+    <section class="section approach-section" id="approach">
+        <div class="section-container">
+            <div class="approach-grid">
+                <div class="approach-visual reveal">
+                    <blockquote class="approach-quote">
+                        Foundation-first thinking.<br>
+                        We master the <em>fundamentals</em> before reaching for innovation.
+                    </blockquote>
+                </div>
+
+                <div class="approach-list reveal">
+                    <div class="approach-item">
+                        <span class="approach-number">01</span>
+                        <div class="approach-content">
+                            <h5>Right Tool for Every Challenge</h5>
+                            <p>Unique challenges require specific solutions with careful technology selection.</p>
+                        </div>
+                    </div>
+                    <div class="approach-item">
+                        <span class="approach-number">02</span>
+                        <div class="approach-content">
+                            <h5>Complementary Expertise</h5>
+                            <p>Three experts with different but related technologies creating synergy.</p>
+                        </div>
+                    </div>
+                    <div class="approach-item">
+                        <span class="approach-number">03</span>
+                        <div class="approach-content">
+                            <h5>Experience Meets Innovation</h5>
+                            <p>Deep expertise combined with fresh perspectives.</p>
+                        </div>
+                    </div>
+                    <div class="approach-item">
+                        <span class="approach-number">04</span>
+                        <div class="approach-content">
+                            <h5>Strategic Technology Adoption</h5>
+                            <p>Cutting-edge when it makes business sense.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer" id="contact">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="./assets/images/orkidia-logo.png" alt="Orkidia">
+                <p>Where human expertise meets machine intelligence. Expert software solutions for modern businesses.</p>
+            </div>
+
+            <div class="footer-column">
+                <h5>Services</h5>
+                <ul>
+                    <li><a href="#services">Code Refactoring</a></li>
+                    <li><a href="#services">Legacy Migration</a></li>
+                    <li><a href="#services">Microservices</a></li>
+                    <li><a href="#services">AI Integration</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h5>Company</h5>
+                <ul>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="#tools">Tools</a></li>
+                    <li><a href="#approach">Approach</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h5>Contact</h5>
+                <p><a href="mailto:contact@orkidia.io">contact@orkidia.io</a></p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Orkidia. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/573016289511" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 448 512" fill="currentColor">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+        </svg>
+    </a>
+
+    <!-- Modal -->
+    <div id="demoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Request Demo</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <form id="demoForm">
+                <div class="form-group">
+                    <label>Product</label>
+                    <input type="text" id="productName" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="fullName" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label>Company *</label>
+                    <input type="text" id="company" required placeholder="Your Company">
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" id="email" required placeholder="john@company.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone *</label>
+                    <input type="tel" id="phone" required placeholder="+1 234 567 8900">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea id="message" placeholder="Tell us about your needs..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send via WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Reveal on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+                    el.classList.add('visible');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Modal
+        const modal = document.getElementById('demoModal');
+        const closeBtn = document.querySelector('.close-modal');
+
+        document.querySelectorAll('.tool-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.getElementById('productName').value = btn.closest('.tool-card').querySelector('h3').textContent;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeBtn.onclick = () => { modal.style.display = 'none'; document.body.style.overflow = 'auto'; };
+        window.onclick = e => { if (e.target === modal) { modal.style.display = 'none'; document.body.style.overflow = 'auto'; }};
+
+        document.getElementById('demoForm').addEventListener('submit', e => {
+            e.preventDefault();
+            const data = {
+                product: document.getElementById('productName').value,
+                name: document.getElementById('fullName').value,
+                company: document.getElementById('company').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                message: document.getElementById('message').value
+            };
+            const msg = `*Demo Request*\n\n*Product:* ${data.product}\n*Name:* ${data.name}\n*Company:* ${data.company}\n*Email:* ${data.email}\n*Phone:* ${data.phone}\n${data.message ? `*Message:* ${data.message}` : ''}`;
+            window.open(`https://wa.me/573016289511?text=${encodeURIComponent(msg)}`, '_blank');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orkidia - Expert Software Solutions | Alternative Hero</title>
+
+    <!-- Distinctive Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Anybody:wght@100;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========================================
+           ORKIDIA ALTERNATIVE HERO
+           Aesthetic: Editorial Luxury / Refined Minimalism
+           ======================================== */
+
+        :root {
+            /* Warm, sophisticated palette */
+            --bg-deep: #0d0c0a;
+            --bg-warm: #141210;
+            --accent-amber: #c9a227;
+            --accent-gold: #e8d5a3;
+            --text-primary: #f5f3ef;
+            --text-muted: rgba(245, 243, 239, 0.5);
+            --text-subtle: rgba(245, 243, 239, 0.3);
+
+            /* Typography */
+            --font-display: 'Anybody', sans-serif;
+            --font-body: 'Cormorant Garamond', Georgia, serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ========================================
+           HERO SECTION
+           ======================================== */
+
+        .hero-alternative {
+            min-height: 100vh;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+        }
+
+        /* Grain Overlay */
+        .hero-alternative::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Left Panel - Typography Heavy */
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6rem 4rem 6rem 8rem;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* Decorative vertical line */
+        .hero-left::before {
+            content: '';
+            position: absolute;
+            left: 4rem;
+            top: 15%;
+            height: 70%;
+            width: 1px;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                var(--accent-amber) 20%,
+                var(--accent-amber) 80%,
+                transparent
+            );
+            opacity: 0.4;
+        }
+
+        /* Brand Mark */
+        .brand-mark {
+            margin-bottom: 4rem;
+            animation: fadeSlideUp 1s ease-out;
+        }
+
+        .brand-mark span {
+            font-family: var(--font-display);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--accent-amber);
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .brand-mark span::before,
+        .brand-mark span::after {
+            content: '';
+            width: 20px;
+            height: 1px;
+            background: var(--accent-amber);
+        }
+
+        /* Main Headline */
+        .hero-headline {
+            margin-bottom: 3rem;
+        }
+
+        .hero-headline h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 7vw, 7rem);
+            font-weight: 100;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+        }
+
+        .hero-headline h1 .line {
+            display: block;
+            overflow: hidden;
+        }
+
+        .hero-headline h1 .line span {
+            display: block;
+            animation: revealLine 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+            opacity: 0;
+            transform: translateY(100%);
+        }
+
+        .hero-headline h1 .line:nth-child(1) span { animation-delay: 0.2s; }
+        .hero-headline h1 .line:nth-child(2) span { animation-delay: 0.35s; }
+        .hero-headline h1 .line:nth-child(3) span { animation-delay: 0.5s; }
+
+        .hero-headline h1 em {
+            font-style: italic;
+            font-weight: 100;
+            color: var(--accent-gold);
+        }
+
+        /* Subheadline */
+        .hero-subheadline {
+            font-family: var(--font-body);
+            font-size: 1.35rem;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.7;
+            color: var(--text-muted);
+            max-width: 420px;
+            margin-bottom: 4rem;
+            animation: fadeSlideUp 1s ease-out 0.7s both;
+        }
+
+        /* CTA Group */
+        .hero-cta-group {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            animation: fadeSlideUp 1s ease-out 0.9s both;
+        }
+
+        .cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 2.5rem;
+            background: transparent;
+            border: 1px solid var(--accent-amber);
+            color: var(--accent-amber);
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--accent-amber);
+            transform: translateX(-101%);
+            transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+            z-index: -1;
+        }
+
+        .cta-primary:hover {
+            color: var(--bg-deep);
+        }
+
+        .cta-primary:hover::before {
+            transform: translateX(0);
+        }
+
+        .cta-primary .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .cta-primary:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        .cta-secondary {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text-subtle);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .cta-secondary::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--text-muted);
+            transition: width 0.3s ease;
+        }
+
+        .cta-secondary:hover {
+            color: var(--text-muted);
+        }
+
+        .cta-secondary:hover::after {
+            width: 100%;
+        }
+
+        /* Right Panel - Visual */
+        .hero-right {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(
+                135deg,
+                var(--bg-warm) 0%,
+                var(--bg-deep) 100%
+            );
+        }
+
+        /* Floating Orchid Petals Animation */
+        .petal-container {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .petal {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            background: linear-gradient(
+                135deg,
+                rgba(201, 162, 39, 0.15) 0%,
+                rgba(232, 213, 163, 0.08) 100%
+            );
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            filter: blur(1px);
+            animation: floatPetal 20s ease-in-out infinite;
+        }
+
+        .petal:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-delay: 0s;
+            transform: rotate(15deg) scale(0.8);
+        }
+
+        .petal:nth-child(2) {
+            top: 30%;
+            right: 15%;
+            animation-delay: -5s;
+            transform: rotate(-25deg) scale(1.2);
+        }
+
+        .petal:nth-child(3) {
+            bottom: 25%;
+            left: 30%;
+            animation-delay: -10s;
+            transform: rotate(45deg) scale(0.6);
+        }
+
+        .petal:nth-child(4) {
+            top: 60%;
+            right: 25%;
+            animation-delay: -15s;
+            transform: rotate(-10deg) scale(1);
+        }
+
+        .petal:nth-child(5) {
+            top: 45%;
+            left: 10%;
+            animation-delay: -7s;
+            transform: rotate(30deg) scale(0.9);
+        }
+
+        /* Central Logo/Visual */
+        .hero-visual {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero-visual img {
+            max-height: 500px;
+            width: auto;
+            filter: brightness(1.1) drop-shadow(0 40px 80px rgba(201, 162, 39, 0.15));
+            animation: floatLogo 8s ease-in-out infinite;
+        }
+
+        /* Stats Row */
+        .hero-stats {
+            position: absolute;
+            bottom: 4rem;
+            left: 4rem;
+            right: 4rem;
+            display: flex;
+            justify-content: center;
+            gap: 5rem;
+            z-index: 5;
+        }
+
+        .stat-item {
+            text-align: center;
+            animation: fadeSlideUp 1s ease-out 1.1s both;
+        }
+
+        .stat-item:nth-child(2) { animation-delay: 1.25s; }
+        .stat-item:nth-child(3) { animation-delay: 1.4s; }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 100;
+            color: var(--accent-gold);
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-style: italic;
+            color: var(--text-subtle);
+            margin-top: 0.5rem;
+        }
+
+        /* Bottom Navigation */
+        .hero-bottom-nav {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 3rem;
+            z-index: 10;
+        }
+
+        .hero-bottom-nav a {
+            font-family: var(--font-display);
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-subtle);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .hero-bottom-nav a:hover {
+            color: var(--accent-amber);
+        }
+
+        /* ========================================
+           ANIMATIONS
+           ======================================== */
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes revealLine {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatPetal {
+            0%, 100% {
+                transform: translateY(0) rotate(var(--rotate, 15deg));
+                opacity: 0.6;
+            }
+            25% {
+                transform: translateY(-30px) rotate(calc(var(--rotate, 15deg) + 10deg));
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-15px) rotate(calc(var(--rotate, 15deg) - 5deg));
+                opacity: 0.5;
+            }
+            75% {
+                transform: translateY(-40px) rotate(calc(var(--rotate, 15deg) + 15deg));
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes floatLogo {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+
+        @media (max-width: 1200px) {
+            .hero-left {
+                padding: 4rem 3rem 4rem 5rem;
+            }
+
+            .hero-left::before {
+                left: 2.5rem;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .hero-alternative {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto;
+            }
+
+            .hero-left {
+                padding: 8rem 2rem 4rem;
+                text-align: center;
+                align-items: center;
+            }
+
+            .hero-left::before {
+                display: none;
+            }
+
+            .hero-subheadline {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-cta-group {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .hero-right {
+                min-height: 50vh;
+            }
+
+            .hero-stats {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                right: auto;
+                padding: 3rem 2rem;
+                background: var(--bg-warm);
+                gap: 2rem;
+                flex-wrap: wrap;
+            }
+
+            .hero-bottom-nav {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                transform: none;
+                padding: 2rem;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1.5rem;
+                background: var(--bg-deep);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-headline h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subheadline {
+                font-size: 1.1rem;
+            }
+
+            .hero-visual img {
+                max-height: 280px;
+            }
+
+            .stat-value {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-alternative">
+        <!-- Left Panel -->
+        <div class="hero-left">
+            <div class="brand-mark">
+                <span>Orkidia</span>
+            </div>
+
+            <div class="hero-headline">
+                <h1>
+                    <div class="line"><span>Transform</span></div>
+                    <div class="line"><span><em>legacy</em> into</span></div>
+                    <div class="line"><span>excellence</span></div>
+                </h1>
+            </div>
+
+            <p class="hero-subheadline">
+                Where precision engineering meets elegant architecture.
+                We sculpt modern, scalable solutions from the foundations of your existing systems.
+            </p>
+
+            <div class="hero-cta-group">
+                <a href="#contact" class="cta-primary">
+                    Begin Your Journey
+                    <span class="arrow">&#8594;</span>
+                </a>
+                <a href="/blog/" class="cta-secondary">Explore our thinking</a>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="hero-right">
+            <div class="petal-container">
+                <div class="petal" style="--rotate: 15deg;"></div>
+                <div class="petal" style="--rotate: -25deg;"></div>
+                <div class="petal" style="--rotate: 45deg;"></div>
+                <div class="petal" style="--rotate: -10deg;"></div>
+                <div class="petal" style="--rotate: 30deg;"></div>
+            </div>
+
+            <div class="hero-visual">
+                <img src="./assets/images/orkidia-logo.png" alt="Orkidia">
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-value">3</div>
+                <div class="stat-label">Expert Partners</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">9</div>
+                <div class="stat-label">Core Services</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">15+</div>
+                <div class="stat-label">Technologies</div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="hero-bottom-nav">
+            <a href="#tools">Tools</a>
+            <a href="#services">Services</a>
+            <a href="/blog/">Blog</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </section>
+</body>
+</html>

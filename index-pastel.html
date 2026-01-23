@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orkidia - Expert Software Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --lavender: #b8a9c9;
+            --lavender-light: #d4c8e0;
+            --pink: #f0c6d4;
+            --pink-light: #fae0e8;
+            --mint: #a8d5ba;
+            --mint-light: #c8e6d0;
+            --peach: #ffd4b8;
+            --cream: #fdfbf7;
+            --white: #ffffff;
+            --text-dark: #3a3a4a;
+            --text-muted: #6a6a7a;
+
+            --font-display: 'Poppins', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--cream);
+            color: var(--text-dark);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* Gradient Background */
+        .gradient-bg {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 20%, var(--lavender-light) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, var(--pink-light) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, var(--mint-light) 0%, transparent 60%);
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-header {
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--lavender), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: color 0.3s;
+        }
+
+        .nav a:hover { color: var(--text-dark); }
+
+        .hero-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+            text-align: center;
+        }
+
+        .hero-inner {
+            max-width: 700px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: var(--white);
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--lavender);
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(184, 169, 201, 0.2);
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--lavender), var(--pink), var(--mint));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-soft {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--lavender), var(--pink));
+            color: var(--white);
+            box-shadow: 0 8px 30px rgba(184, 169, 201, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(184, 169, 201, 0.5);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--text-dark);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .btn-secondary:hover {
+            background: var(--cream);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 5rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--lavender), var(--mint));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Floating Shapes */
+        .floating-shapes {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .shape-1 {
+            width: 200px;
+            height: 200px;
+            background: var(--lavender-light);
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 150px;
+            height: 150px;
+            background: var(--pink-light);
+            top: 60%;
+            right: 10%;
+            animation-delay: -3s;
+        }
+
+        .shape-3 {
+            width: 100px;
+            height: 100px;
+            background: var(--mint-light);
+            bottom: 20%;
+            left: 15%;
+            animation-delay: -6s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 6rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, var(--lavender), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        /* TOOLS */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .tool-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+            transition: all 0.4s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(184, 169, 201, 0.2);
+        }
+
+        .tool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.25rem;
+        }
+
+        .tool-header h3 {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 600;
+        }
+
+        .tool-badge {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--lavender);
+            padding: 0.4rem 1rem;
+            background: var(--lavender-light);
+            border-radius: 20px;
+        }
+
+        .tool-description {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .tool-features {
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .tool-feature::before {
+            content: '✓';
+            color: var(--mint);
+            font-weight: 600;
+        }
+
+        .tool-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--cream);
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-stat { text-align: center; }
+
+        .tool-stat-value {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .tool-stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .tool-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--lavender), var(--pink));
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tool-btn:hover {
+            box-shadow: 0 8px 30px rgba(184, 169, 201, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* SERVICES */
+        .services-section {
+            background: var(--white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .service-item {
+            padding: 2rem;
+            border-radius: 20px;
+            background: var(--cream);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .service-item:hover {
+            background: linear-gradient(135deg, var(--lavender-light), var(--pink-light));
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.25rem;
+            background: var(--white);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .service-item h4 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-item p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* APPROACH */
+        .approach-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .approach-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+        }
+
+        .approach-quote {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.5;
+            color: var(--text-dark);
+        }
+
+        .approach-quote span {
+            background: linear-gradient(135deg, var(--lavender), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .approach-list { list-style: none; }
+
+        .approach-item {
+            display: flex;
+            gap: 1.25rem;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .approach-item:last-child { border-bottom: none; }
+
+        .approach-number {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--lavender-light), var(--pink-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-dark);
+            flex-shrink: 0;
+        }
+
+        .approach-content h5 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .approach-content p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--white);
+            padding: 4rem 4rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 1rem;
+            max-width: 280px;
+        }
+
+        .footer-column h5 {
+            font-family: var(--font-display);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 0.6rem; }
+        .footer-column a { font-size: 14px; color: var(--text-muted); transition: color 0.3s; }
+        .footer-column a:hover { color: var(--lavender); }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--lavender), var(--pink));
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: all 0.3s;
+            box-shadow: 0 8px 30px rgba(184, 169, 201, 0.4);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(184, 169, 201, 0.5);
+        }
+
+        .whatsapp-float svg { width: 28px; height: 28px; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .tools-grid { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .approach-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .section { padding: 4rem 2rem; }
+            .hero-header { flex-direction: column; gap: 1rem; padding: 1.5rem 2rem; }
+            .nav { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+            .hero-stats { flex-direction: column; gap: 1.5rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-bg"></div>
+
+    <section class="hero">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+
+        <header class="hero-header">
+            <div class="logo">Orkidia</div>
+            <nav class="nav">
+                <a href="#tools">Tools</a>
+                <a href="#services">Services</a>
+                <a href="/blog/">Blog</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <div class="hero-content">
+            <div class="hero-inner">
+                <span class="hero-badge">✨ Expert Software Solutions</span>
+                <h1 class="hero-title">
+                    Transform Your<br><span>Digital Dreams</span><br>Into Reality
+                </h1>
+                <p class="hero-description">
+                    We modernize legacy systems with care and precision, creating beautiful, scalable architectures.
+                </p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn-soft btn-primary">Start Your Journey →</a>
+                    <a href="/blog/" class="btn-soft btn-secondary">Read Our Blog</a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat"><div class="stat-value">3</div><div class="stat-label">Expert Partners</div></div>
+                    <div class="stat"><div class="stat-value">9</div><div class="stat-label">Core Services</div></div>
+                    <div class="stat"><div class="stat-value">15+</div><div class="stat-label">Technologies</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="tools">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Our <span>Tools</span></h2>
+                <p class="section-subtitle">Crafted with care for modern businesses</p>
+            </div>
+
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <h3>VintageBanking</h3>
+                        <span class="tool-badge">Credit Risk</span>
+                    </div>
+                    <p class="tool-description">A gentle yet powerful credit risk management suite, designed to bring clarity to your financial decisions.</p>
+                    <div class="tool-features">
+                        <div class="tool-feature">Vintage Analysis (Cohorts)</div>
+                        <div class="tool-feature">6 Risk Indicators</div>
+                        <div class="tool-feature">Markov Chain Projections</div>
+                        <div class="tool-feature">DuckDB Analytics</div>
+                    </div>
+                    <div class="tool-stats">
+                        <div class="tool-stat"><div class="tool-stat-value">65%</div><div class="tool-stat-label">Faster</div></div>
+                        <div class="tool-stat"><div class="tool-stat-value">6</div><div class="tool-stat-label">Indicators</div></div>
+                        <div class="tool-stat"><div class="tool-stat-value">100%</div><div class="tool-stat-label">Cloud</div></div>
+                    </div>
+                    <button class="tool-btn">Request Demo</button>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <h3>POL_OPTIMIZATOR</h3>
+                        <span class="tool-badge">Statistics</span>
+                    </div>
+                    <p class="tool-description">Transform overwhelming data into beautiful insights with our friendly optimization platform.</p>
+                    <div class="tool-features">
+                        <div class="tool-feature">Automated Processing</div>
+                        <div class="tool-feature">Multi-Objective Optimization</div>
+                        <div class="tool-feature">Variable Importance (IV)</div>
+                        <div class="tool-feature">Cloud Scaling</div>
+                    </div>
+                    <div class="tool-stats">
+                        <div class="tool-stat"><div class="tool-stat-value">1M+</div><div class="tool-stat-label">Records</div></div>
+                        <div class="tool-stat"><div class="tool-stat-value">3</div><div class="tool-stat-label">Metrics</div></div>
+                        <div class="tool-stat"><div class="tool-stat-value">Auto</div><div class="tool-stat-label">Scale</div></div>
+                    </div>
+                    <button class="tool-btn">Request Demo</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section services-section" id="services">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Our <span>Services</span></h2>
+                <p class="section-subtitle">Everything you need to grow</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-item"><div class="service-icon">🔧</div><h4>Code Refactoring</h4><p>Making code beautiful again.</p></div>
+                <div class="service-item"><div class="service-icon">🚀</div><h4>Legacy Migration</h4><p>Gentle transitions to modern tech.</p></div>
+                <div class="service-item"><div class="service-icon">🧩</div><h4>Microservices</h4><p>Scalable, friendly architecture.</p></div>
+                <div class="service-item"><div class="service-icon">☁️</div><h4>AWS Cost Analysis</h4><p>Smart cloud optimization.</p></div>
+                <div class="service-item"><div class="service-icon">📊</div><h4>Data Processing</h4><p>Handling big data with care.</p></div>
+                <div class="service-item"><div class="service-icon">🤖</div><h4>AI Deployment</h4><p>Intelligence made simple.</p></div>
+                <div class="service-item"><div class="service-icon">💻</div><h4>Custom Development</h4><p>Built just for you.</p></div>
+                <div class="service-item"><div class="service-icon">💬</div><h4>LLM Integration</h4><p>Language models with ease.</p></div>
+                <div class="service-item"><div class="service-icon">⚡</div><h4>Rapid Prototyping</h4><p>Ideas to reality, fast.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-container">
+            <div class="approach-grid">
+                <div class="approach-card">
+                    <p class="approach-quote">
+                        We believe in building with <span>care and intention</span>. Every line of code should feel purposeful.
+                    </p>
+                </div>
+
+                <ul class="approach-list">
+                    <li class="approach-item">
+                        <span class="approach-number">01</span>
+                        <div class="approach-content"><h5>Right Fit Solutions</h5><p>Every project gets personalized attention.</p></div>
+                    </li>
+                    <li class="approach-item">
+                        <span class="approach-number">02</span>
+                        <div class="approach-content"><h5>Collaborative Spirit</h5><p>Three experts working in harmony.</p></div>
+                    </li>
+                    <li class="approach-item">
+                        <span class="approach-number">03</span>
+                        <div class="approach-content"><h5>Balanced Approach</h5><p>Experience meets fresh thinking.</p></div>
+                    </li>
+                    <li class="approach-item">
+                        <span class="approach-number">04</span>
+                        <div class="approach-content"><h5>Thoughtful Adoption</h5><p>New tech when it truly helps.</p></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo">Orkidia</div>
+                <p>Building beautiful software with care. Let's create something wonderful together.</p>
+            </div>
+            <div class="footer-column">
+                <h5>Services</h5>
+                <ul><li><a href="#services">Code Refactoring</a></li><li><a href="#services">Legacy Migration</a></li><li><a href="#services">Microservices</a></li></ul>
+            </div>
+            <div class="footer-column">
+                <h5>Company</h5>
+                <ul><li><a href="/blog/">Blog</a></li><li><a href="#tools">Tools</a></li></ul>
+            </div>
+            <div class="footer-column">
+                <h5>Contact</h5>
+                <ul><li><a href="mailto:contact@orkidia.io">contact@orkidia.io</a></li></ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Orkidia. Made with 💜</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/573016289511" class="whatsapp-float" target="_blank">
+        <svg viewBox="0 0 448 512" fill="currentColor"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157z"/></svg>
+    </a>
+</body>
+</html>
